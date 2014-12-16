@@ -104,17 +104,14 @@ grid:
     domicile: A domicile
     date: Date
     typematch: Type de match
-    typematch:
-        type: Type de match
+    typematch.type: Type de match
     centre:
         centre: Centre
     club: Club rencontré
-    club:
-        list: Liste des clubs
-        nom: Club
+    club.list: Liste des clubs
+    club.nom: Club
     equipe: Equipe de notre club
-    equipe:
-        nom: Nom de l'équipe
+    equipe.nom: Nom de l'équipe
     user:  Membre
     saison:
         debut: Début saison
@@ -165,77 +162,15 @@ form:
         current_password:   Mot de passe actuel
         enabled:    Actif
         roles:      Niveau
-        lastlogin:  Dernière connection
-        nom_client: Nom du client
-        domaine: Nom de domaine
-        infosbanque: Informations bancaires
-        prefix_facture: Prefixe facture
-        prefix_facture_help: Le prefixe qui sera affiché sur les factures
-        options: Options du client
-        duree_contrat: Durée contrat max
-        duree_contrat_help: Durée maximale possibles des contrats (en jours)
-        facturation: Facturation
-        franchise: Franchise
-        web: Web
-        typste: Type de société
-        codeape: Code APE
-        capital: Capital
-        logo: Logo
-        imageName: Logo
-        logo_help: Logo de l'entreprise au format jpg, jpeg , gif ou png
-        cgl: CGL
-        cglName: CGL
-        cgl_help: Conditions générales de location au format .txt
         ville: Ville
         cp: Code postal
-        land: Pays
-        banque: Banque
-        code_guichet: Code guichet
-        compte: N° de compte
-        clerib: Clé
-        mode_payment: Moyens de paiements
-        surclassementMax: Surclassements max
-        surclassementMax_help: Nombre maximum de surclassements possibles en cas de non disponnibilité de la gamme demandée
-        penality: Pénalité retard
-        penality_help: Pénalité par jour de retard (en pourcentage du tarif journalier)
-        ifr: Indémnité forfaitaire de retard
-        multitp: coef sur taux légal
-        duree_contrat_help: Durée maximale possible
-        surclass: niveau(x)
-        toleranceretard_addon: en heure(s)
-        validitebha_addon: en jour(s)
-        validiteBonAchat: Durée de validité des bons d'achat
-        toleranceRetard: Retard admissible au retour
-        optionspayante: Options payantes
-        noclient:   Pas de client affecté
         photo:  Photo
-        
     profil:
         edit:   Editer votre profil
         edition: Edition de votre profil
         photo: Votre photo actuelle
     title:
-        edit_region : Edition de la région
-        list_region : Liste des régions
-        show_region : Voir le détail d'une région
-        new_region  : Nouvelle région
         edit_utilisateur : Edition de l'utilisateur
         list_utilisateur : Liste des utilisateurs
         pass_utilisateur    : Changer le mot de passe de l'utilisateur 
         show_utilisateur : Voir le détail d'un utilisateur
-        edit_client : Edition du client
-        list_client : Liste des clients
-        new_client  : Nouveau client
-        show_client : Voir le détail d'un client
-        edit_typste : Edition du type de société
-        list_typste : Liste des types de société
-        new_typste  : Nouveau type de société
-        show_typste : Voir le détail d'un type de société
-        edit_land : Edition du pays
-        list_land : Liste des pays
-        new_land  : Nouveau pays
-        show_land : Voir le détail d'un pays
-        identite    : Identité
-        coord       : Coordonnées
-        options     : Options
-        infosbanque : Informations bancaires
