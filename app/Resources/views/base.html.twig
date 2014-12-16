@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="appli web pour club de foot aeccwb distric des flandres">
+    <meta name="author" content="stéphane lemoine">
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon_slad.ico') }}" />
+
+    <title>{% block title %}eaccwb{% endblock %}</title>
+    {% block stylesheets %}
+    {% stylesheets
+        'css/bootstrap.min.css'
+        'css/sticky-footer-navbar.css'
+        'css/font-awesome-4.2.0/css/font-awesome.css'
+        filter='cssrewrite' output='css/compiled/all.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    {% endblock %}
+        
+    {% block javascripts %}
+        {% javascripts
+            'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
+            'js/bootstrap.min.js'
+            'js/jquery.blockUI.js'
+            'js/slad_anim.js'
+            output='js/compiled/all.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+
+  </head>
+
+  <body>
+      
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+        {# Brand and toggle get grouped for better mobile display - menu dépliable#}
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#admin-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href={{ path('homepage') }}><img src={{asset("img/slad31.png")}} height="20px" /></a>
+            </div>
+
+            {# Collect the nav links, forms, and other content for toggling #}
+            
+            <div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
+            {% block menu %}
+                {% if is_granted("ROLE_USER") %}
+                    {{ knp_menu_render('FootBundle:MenuBuilder:homeMenu', {'currentClass': 'active', 'template': ':Menu:knp_menu.html.twig'}) }}
+                {% endif %}
+                {{ knp_menu_render('FootBundle:MenuBuilder:userMenu', {'currentClass': 'active', 'template': ':Menu:knp_menu.html.twig'}) }}
+            {% endblock %}
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="container-100">
+        <div class="container-fluid">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container-100">
+            <img src={{ asset('img/slad31.png') }} height="20px"> <strong>EACCWB</strong>
+            Copyright &copy; 2014 HAMS | Tous droits réservés |
+            <a href={{ path('ml') }}  >Mentions légales</a>
+        </div>
+    </div>
+      
+    {# Image du loader #}  
+    <img src="{{ asset('img/ajax-loader.gif') }}" id="divLoading" style="display:none;">      
+
+  </body>
+</html>

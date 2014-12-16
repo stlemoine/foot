@@ -1,0 +1,40 @@
+{% block extends %}
+{{ "{% extends '::Appli/layout.html.twig' %}" }}
+{% endblock extends %}
+
+{% block title %}
+{{ "{% block title %} {{ parent() }}|"~entity|lower~"|{{'grid.show'|trans}} {% endblock %}" }}
+{% endblock %}
+
+{{ "{% block appli_content %}" }}
+
+    <h1>
+        {{ "{{'menu."~entity|lower~"'|trans}}" }} 
+        <a href="{{ "{{ path('" ~ route_name_prefix ~ "') }}" }}" id="retour" name="retour" class="btn btn-danger btn-xs">{{ "{{ 'retour.liste' | trans }}" }}</a>
+    </h1>
+
+    <table class="table table-bordered table-condensed">
+        <tbody>
+        {%- for field, metadata in fields %}
+
+            <tr>
+                <th>{{ field|capitalize }}</th>
+
+            {%- if metadata.type in ['date', 'datetime'] %}
+
+                <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}' }}</td>
+
+            {%- else %}
+
+                <td>{{ '{{ entity.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
+
+            {%- endif %}
+
+            </tr>
+
+        {%- endfor %}
+
+        </tbody>
+    </table>
+
+{{ "{% endblock appli_content %}" }}

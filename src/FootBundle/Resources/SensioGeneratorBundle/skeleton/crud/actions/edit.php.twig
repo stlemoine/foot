@@ -1,0 +1,79 @@
+
+    /**
+{% block phpdoc_method_header %}
+     * Displays a form to edit an existing {{ entity }} entity.
+{% endblock phpdoc_method_header %}
+     *
+{% block phpdoc_method_annotations %}
+{% if 'annotation' == format %}
+     * @Route("/{id}/edit", name="{{ route_name_prefix }}_edit")
+     * @Method("GET")
+     * @Template("::Appli\{{ entity }}\edit.html.twig")
+{% endif %}
+{% endblock phpdoc_method_annotations %}
+     */
+{% block method_definition %}
+    public function editAction($id)
+{% endblock method_definition %}
+    {
+{% block method_body %}
+        // traduction
+        $t = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('{{ bundle }}:{{ entity }}')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException($t->trans('form.erreur.objet_introuvable'));
+        }
+        
+        $this->container->get('app.checkaccess')->Club($entity);
+
+        $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($id);
+{% endblock method_body %}
+
+{% block method_return %}
+{% if 'annotation' == format %}
+        return array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        );
+{% else %}
+        return $this->render('Appli\{{entity}}\edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+{% endif %}
+{% endblock method_return %}
+    }
+
+{% block form %}
+    /**
+    * Creates a form to edit a {{ entity }} entity.
+    *
+    * @param {{ entity_class }} $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm({{ entity_class }} $entity)
+    {
+        $form = $this->createForm(new {{ entity_class }}Type($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN_SLAD')), $entity, array(
+            'action' => $this->generateUrl('{{ route_name_prefix }}_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+            'attr'      =>  array(
+                                'class'     => 'form-horizontal'
+                                )
+        ));
+
+        $form->add('submit', 'submit', array(   'label' => 'update',
+                                                'attr'  =>array(
+                                                    'class'=>'btn btn-primary btn-xs'
+                                                    )
+                                                ));
+
+        return $form;
+    }
+{% endblock form %}

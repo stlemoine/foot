@@ -1,0 +1,105 @@
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal" role="form">
+    <div class="form-group">
+        {{ form_label(form.username,'form.label.username'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+        <div class="col-sm-4">
+            {{ form_widget(form.username,{'attr':{'class':'form-control'} })}}
+        </div>
+        <div class="col-sm-4">
+            {{ form_errors(form.username)}}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.plainPassword.first,'form.label.new'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+        <div class="col-sm-4">
+            {{ form_widget(form.plainPassword.first,{'attr':{'class':'form-control','placeholder':'form.placeholder.new'|trans} })}}
+        </div>
+        <div class="col-sm-4">
+            {{ form_errors(form.plainPassword.first)}}
+        </div>
+    </div> 
+    <div class="form-group">
+        {{ form_label(form.plainPassword.second,'form.label.newcheck'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+        <div class="col-sm-4">
+            {{ form_widget(form.plainPassword.second,{'attr':{'class':'form-control','placeholder':'form.placeholder.new'|trans} })}}
+        </div>
+        <div class="col-sm-4">
+            {{ form_errors(form.plainPassword.second)}}
+        </div>
+    </div> 
+    <div class="form-group">
+        {{ form_label(form.email,'form.label.email'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+        <div class="col-sm-4">
+            {{ form_widget(form.email,{'attr':{'class':'form-control'} })}}
+        </div>
+        <div class="col-sm-4">
+            {{ form_errors(form.email)}}
+        </div>
+    </div> 
+    <div class="form-group">
+        {{ form_label(form.prenom,'form.label.prenom'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+        <div class="col-sm-4">
+            {{ form_widget(form.prenom,{'attr':{'class':'form-control'} })}}
+        </div>
+        <div class="col-sm-4">
+            {{ form_errors(form.prenom)}}
+        </div>
+    </div> 
+    <div class="form-group">
+        {{ form_label(form.nom,'form.label.nom'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+        <div class="col-sm-4">
+            {{ form_widget(form.nom,{'attr':{'class':'form-control'} })}}
+        </div>
+        <div class="col-sm-4">
+            {{ form_errors(form.nom)}}
+        </div>
+    </div> 
+    <div class="row control-group">
+        <div class="col-sm-3">
+            <label class="control-label" for="textinput">{{ "form.imageName" | trans }}</label>
+        </div>
+        <div class="col-sm-9">
+            <div class="controls">
+                {{ form_widget(form.photo) }}{{ form_errors(form.photo) }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.tel,'form.label.tel'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+        <div class="col-sm-4">
+            {{ form_widget(form.tel,{'attr':{'class':'form-control'} })}}
+        </div>
+        <div class="col-sm-4">
+            {{ form_errors(form.tel)}}
+        </div>
+    </div> 
+    {% if is_granted('ROLE_SUPER_ADMIN_SLAD') %}
+        <div class="form-group">
+            {{ form_label(form.club,'form.label.club'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+            <div class="col-sm-4">
+                {{ form_widget(form.club,{'attr':{'class':'form-control'} })}}
+            </div>
+            <div class="col-sm-4">
+                {{ form_errors(form.club)}}
+            </div>
+        </div>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="form-group">
+            {{ form_label(form.roles,'form.label.roles'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+            <div class="col-sm-4">
+                {{ form_widget(form.roles,{'attr':{'class':'form-control'} })}}
+            </div>
+            <div class="col-sm-4">
+                {{ form_errors(form.roles)}}
+            </div>
+        </div>
+    {% endif %}
+    
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-4">
+        <input class="btn btn-primary btn-xs" type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+        <a href="{{ path('user') }}" id="retour" name="retour" class="btn btn-danger btn-xs">{{ "retour.liste" | trans }}</a> 
+      </div>
+    </div>
+  {{ form_rest(form) }}
+</form>

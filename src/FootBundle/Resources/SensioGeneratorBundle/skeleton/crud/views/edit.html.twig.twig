@@ -1,0 +1,24 @@
+{% block extends %}
+{{ "{% extends '::Appli/layout.html.twig' %}" }}
+{{ "{% form_theme edit_form with '::Form/simple.html.twig' %}" }}
+{% endblock extends %}
+
+{% block title %}
+{{ "{% block title %} {{ parent() }}|"~entity|lower~"|{{'grid.edit'|trans}} {% endblock %}" }}
+{% endblock %}
+
+{{ "{% block appli_content %}" }}
+
+{{ '{{ form_start(edit_form) }}' }}
+
+    <h1>
+        {{ "{{'menu."~entity|lower~"'|trans}}" }} {{ "{{'edition'|trans}}" }}
+        {{ '{{form_widget(edit_form.submit)}}' }}
+        <a href="{{ "{{ path('" ~ route_name_prefix ~ "') }}" }}" id="retour" name="retour" class="btn btn-danger btn-xs">{{ "{{ 'retour.liste' | trans }}" }}</a>
+    </h1>
+
+    {{ '{{ form(edit_form) }}' }}
+
+{{ '{{ form_end(edit_form) }}' }}  
+
+{{ "{% endblock appli_content %}" }}

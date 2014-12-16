@@ -1,0 +1,21 @@
+{% extends '::Appli/layout.html.twig' %}
+{% form_theme form with '::Form/simple.html.twig' %}
+
+{% block title %} {{ parent() }}|club|{{'grid.new'|trans}} {% endblock %}
+
+
+{% block appli_content %}
+
+{{ form_start(form) }}
+
+    <h1>
+        {{'menu.club'|trans}} {{'creation'|trans}}
+        {{form_widget(form.submit)}}
+        <a href="{{ path('club') }}" id="retour" name="retour" class="btn btn-danger btn-xs">{{ 'retour.liste' | trans }}</a>
+    </h1>
+    {{ form(form) }}
+
+{{ form_end(form) }}
+
+{% endblock appli_content %}
+

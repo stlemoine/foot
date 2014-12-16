@@ -1,0 +1,25 @@
+{% block extends %}
+{{ "{% extends '::Appli/layout.html.twig' %}" }}
+{{ "{% form_theme form with '::Form/simple.html.twig' %}" }}
+{% endblock extends %}
+
+{% block title %}
+{{ "{% block title %} {{ parent() }}|"~entity|lower~"|{{'grid.new'|trans}} {% endblock %}" }}
+{% endblock %}
+
+
+{{ "{% block appli_content %}" }}
+
+{{ '{{ form_start(form) }}' }}
+
+    <h1>
+        {{ "{{'menu."~entity|lower~"'|trans}}" }} {{ "{{'creation'|trans}}" }}
+        {{ '{{form_widget(form.submit)}}' }}
+        <a href="{{ "{{ path('" ~ route_name_prefix ~ "') }}" }}" id="retour" name="retour" class="btn btn-danger btn-xs">{{ "{{ 'retour.liste' | trans }}" }}</a>
+    </h1>
+    {{ '{{ form(form) }}' }}
+
+{{ '{{ form_end(form) }}' }}
+
+{{ "{% endblock appli_content %}" }}
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>An Error Occurred: {{ status_text }}</title>
+
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" />
+		<link rel="stylesheet" href="{{ asset('css/font-awesome-4.2.0/css/font-awesome.css') }}" type="text/css" />
+
+    </head>
+    <body>
+        <div class="col-sm-10 col-sm-offset-1">
+        {% if status_code == 403 %}
+            <h1>{{"hors jeu"|trans}} {{ "niveau insuffisant" | trans }}</h1>
+            <h1><font face="Tahoma" color="red"> {{ "error403" | trans }} {{ status_text }}</font></small</h1>
+            <div>
+                <img src="{{ asset('img/hors-jeu.jpg') }}" alt="photo" />
+            </div>    
+        {% elseif status_code == 404 %}
+            <h1>{{"sortie"|trans}} {{ "page inexistante" | trans }}</h1>
+            <h1><font face="Tahoma" color="red"> {{ "error404" | trans }} {{ status_text }}</font></h1>
+            <div>
+                <img src="{{ asset('img/touche.jpg') }}" alt="photo" />
+            </div> 
+            <div>
+                {{ "signaler bug" | trans }}
+            </div>
+            
+        {% else %}
+            <h1>Oops! An Error Occurred</h1>
+            <h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+
+            <div>
+                Something is broken. Please let us know what you were doing when this error occurred.
+                We will fix it as soon as possible. Sorry for any inconvenience caused.
+            </div>
+        {% endif %}
+        <p><b>{{ "gobackhomeonerror" | trans }}:</b></p>
+		<a href="{{ path('homepage') }}" class="btn btn-large btn-info"><i class="fa fa-home fa-5x"></i>{{ "backhome" | trans }} </a>
+        </div>
+    </body>
+</html>

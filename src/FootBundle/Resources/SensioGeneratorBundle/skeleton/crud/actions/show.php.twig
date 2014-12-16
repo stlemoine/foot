@@ -1,0 +1,55 @@
+
+    /**
+{% block phpdoc_method_header %}
+     * Finds and displays a {{ entity }} entity.
+{% endblock phpdoc_method_header %}
+     *
+{% block phpdoc_method_annotations %}
+{% if 'annotation' == format %}
+     * @Route("/{id}", name="{{ route_name_prefix }}_show")
+     * @Method("GET")
+     * @Template("::Appli\{{ entity }}\show.html.twig")
+{% endif %}
+{% endblock phpdoc_method_annotations %}
+     */
+{% block method_definition %}
+    public function showAction($id)
+{% endblock method_definition %}
+    {
+{% block method_body %}
+        // traduction
+        $t = $this->get('translator');
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('{{ bundle }}:{{ entity }}')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException($t->trans('form.erreur.objet_introuvable'));
+        }
+        
+        $this->container->get('app.checkaccess')->Club($entity);
+        
+{% if 'delete' in actions %}
+
+        $deleteForm = $this->createDeleteForm($id);
+{% endif %}
+{% endblock method_body %}
+
+{% block method_return %}
+{% if 'annotation' == format %}
+        return array(
+            'entity'      => $entity,
+{% if 'delete' in actions %}
+            'delete_form' => $deleteForm->createView(),
+{% endif %}
+        );
+{% else %}
+        return $this->render('::Appli\{{entity}}\show.html.twig', array(
+            'entity'      => $entity,
+{% if 'delete' in actions %}
+            'delete_form' => $deleteForm->createView(),
+{% endif %}
+        ));
+{% endif %}
+{% endblock method_return %}
+    }

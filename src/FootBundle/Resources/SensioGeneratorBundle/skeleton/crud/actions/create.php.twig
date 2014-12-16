@@ -1,0 +1,95 @@
+    /**
+{% block phpdoc_method_header %}
+     * Creates a new {{ entity }} entity.
+{% endblock phpdoc_method_header %}
+     *
+{% block phpdoc_method_annotations %}
+{% if 'annotation' == format %}
+     * @Route("/create", name="{{ route_name_prefix }}_create")
+     * @Method("POST")
+     * @Template("::Appli\{{entity}}\new.html.twig")
+{% endif %}
+{% endblock phpdoc_method_annotations %}
+     */
+{% block method_definition %}
+    public function createAction(Request $request)
+{% endblock method_definition %}
+    {
+{% block method_body %}
+        // traduction
+        $t = $this->get('translator');
+        
+        $entity = new {{ entity_class }}();
+        if(!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN_SLAD')){
+            $club	= $this->container->get('security.context')->getToken()->getUser()->getClub();
+            $entity->setClub($club);
+        }
+        $form = $this->createCreateForm($entity);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+            
+            // message succès création 
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                $t->trans('form.success.creation_ok')
+            );
+            
+            // retour à la grille
+            return $this->redirect($this->generateUrl('{{ route_name_prefix }}'));
+
+        }
+{% endblock method_body %}
+
+{% block method_return %}
+        
+        // message mise à jour ratée
+        $this->get('session')->getFlashBag()->add(
+            'error',
+            $t->trans('form.erreur.saisie')
+        );
+        
+{% if 'annotation' == format %}
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+{% else %}
+        return $this->render('{{ bundle }}:{{ entity}}:new.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        ));
+{% endif %}
+{% endblock method_return %}
+    }
+
+{% block form %}
+    /**
+     * Creates a form to create a {{ entity }} entity.
+     *
+     * @param {{ entity_class }} $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCreateForm({{ entity_class }} $entity)
+    {
+        $form = $this->createForm(new {{ entity_class }}Type($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN_SLAD')), $entity, array(
+            'action' => $this->generateUrl('{{ route_name_prefix }}_create'),
+            'method' => 'POST',
+            'attr'      =>  array(
+                                'class'     => 'form-horizontal'
+                                )
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'create_a_new',
+                                                        'attr'  =>array(
+                                                            'class'=>'btn btn-primary btn-xs'
+                                                        )
+                                                    ));
+
+        return $form;
+    }
+{% endblock form %}

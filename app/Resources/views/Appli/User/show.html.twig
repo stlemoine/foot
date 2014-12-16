@@ -1,0 +1,95 @@
+{% extends '::Appli/layout.html.twig' %}
+
+{% block title %} {{ parent() }}|user|{{'grid.voir'|trans}}{% endblock %}
+
+    
+{% block appli_content %}
+<div class="col-sm-8 col-sm-offset-2">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td>
+                {{ 'form.label.username'|trans }}
+            </td>
+            <td>
+                {{ entity.username }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ 'form.label.lastlogin'|trans }}
+            </td>
+            <td>
+                {{ entity.lastLogin|date('d/m/Y H:i:s') }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ 'form.label.email'|trans }}
+            </td>
+            <td>
+                {{ entity.email }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ 'form.label.prenom'|trans }}
+            </td>
+            <td>
+                {{ entity.prenom }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ 'form.label.nom'|trans }}
+            </td>
+            <td>
+                {{ entity.nom }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ 'form.label.tel'|trans }}
+            </td>
+            <td>
+                {{ entity.tel }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ 'form.label.enabled'|trans }}
+            </td>
+            <td>
+                {{ entity.enabled }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ 'form.label.roles'|trans }}
+            </td>
+            <td>
+                {% for key,value in entity.roles %}
+                    {{ value }}</br>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ 'form.label.club'|trans }}
+            </td>
+            {% if entity.club.nom is defined %}
+                <td>
+                    {{ entity.club.nom }}
+                </td>
+            {% else %}
+                <td>
+                    {{ 'form.label.noclub'|trans }}
+                </td>
+            {% endif %}
+        </tr>
+    </table>
+</div>
+<div class="col-sm-8 col-sm-offset-2">
+    <a href="{{ path('user') }}" id="retour" name="retour" class="btn btn-danger btn-xs">{{ "retour.liste" | trans }}</a>
+</div>
+{% endblock %}
+

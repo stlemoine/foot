@@ -1,0 +1,227 @@
+# scr/AppBundle/Ressources/translations/messages.fr.yml
+
+search:     Chercher
+create_a_new:   Créer un nouveau
+delete: Effacer
+Edit:   Edit
+Show:   Voir
+Pass:   Pass
+jours:  Jours
+niveau insuffisant: Votre rôle ne permet pas l'accès à cette page
+page inexistante: La page recherchée n'existe pas ou a été déplacée
+signaler bug: C'est à priori un problème technique. Merci de nous communiquer ce que vous cherchiez à faire lorsque le problème a surgi. Nous essayerons d'y apporter une solutuion rapidement.
+gobackhomeonerror: Presser ce bouton pour retourner à la page d'accueil 
+hors jeu: Hors jeu!
+sortie: Touche!
+backhome : Retour à l'accueil
+retour:
+    liste: Retour à la liste
+
+# Registration
+registration:
+    check_email: Un e-mail a été envoyé à l'adresse %email%. Il contient un lien d'activation sur lequel il vous faudra cliquer afin d'activer votre compte.
+    confirmed: Félicitations %username%, votre compte est maintenant activé. Mais vous devez encore demander votre rattachement à votre club préféré afin de suivre son actualité. Vous pouvez faire cela en choisissant un club ci-dessous. Une demande sera envoyée au webmaster qui répondra le plus rapidement possible.
+    back: Retour à la page d'origine.
+    submit: Enregistrer
+    flash:
+        user_created: L'utilisateur a été créé avec succès
+    email:
+        subject: Bienvenue %username% !
+        message: |
+            Bonjour %username% !
+
+            Pour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%
+
+            Cordialement,
+            L'équipe.
+            
+menu:
+    admin:  Administration
+    users: Utilisateurs
+    users.liste: Liste des utilisateurs
+    saison: Saisons
+    saison.liste: Liste des saisons
+    scoring: Scoring
+    scoring.liste: Liste des scoring
+    typematch: types de match
+    typematch.liste: Liste des types de match
+    match: Matches
+    match.liste: Liste des matches
+    club: Clubs
+    equipe.liste: Liste des équipes
+    equipe: Equipes
+    club.liste: Liste des clubs
+    user: Membres
+    user.liste: Liste des membres
+
+    
+grid:
+    entree:     Entrée  
+    sortie:     Sortie
+    minute:     Minute
+    user:       Membre
+    match:      Match
+    liste:      liste
+    debut:      Début
+    fin:        Fin
+    g:          Gagné
+    n:          Nul
+    p:          Perdu
+    type:       Type de match
+    id:         Num.
+    username:   Login
+    email:      Email
+    enabled:    Actif 	
+    lastLogin:  Dernière connexion 	
+    locked:     Verrouillé	
+    expired:    Périmé 	
+    prenom:     Prénom	
+    nom:        Nom	
+    tel:        Tél.
+    Actions:    Actions
+    nom_client: Nom
+    codeape:    Code APE
+    ville:      Ville
+    cp:         Code Postal
+    land:       Pays
+    anciennete: Ancienneté
+    capital:    Capital
+    adresse:    Adresse
+    imageName:  Photo
+    roles:      Niveau
+    adversaire: Adversaire
+    bp: Buts pour
+    bc: Buts contre
+    domicile: A domicile
+    date: Date
+    typematch: Type de match
+    typematch:
+        type: Type de match
+    centre:
+        centre: Centre
+    club: Club rencontré
+    club:
+        list: Liste des clubs
+        nom: Club
+    equipe: Equipe de notre club
+    equipe:
+        nom: Nom de l'équipe
+    user:
+        list: Liste des membres
+    saison:
+        debut: Début saison
+        fin: Fin saison
+    
+    
+form:
+    erreur:
+        saisie              : Une erreur est survenue, veuillez vérifier que le formulaire est correctement complété!
+        access_denied       : Vous n'êtes pas autorisé à effectuer cette action!
+        objet_introuvable   : l'objet demandé n'existe pas!
+    success:
+        password_chgt   : le changement de mot de passe a bien été effectué!
+        modif_ok        : La modification a bien été effectuée!
+        creation_ok     : La création a bien été effectuée!
+    visiteur:   visiteur
+    bonjour:    Bonjour
+    login:      Se connecter
+    logout:     Se déconnecter
+    change_password:    Changer de mot de passe
+    plainPassword.first:  Mot de passe
+    plainPassword.second:  Vérification du mot de passe
+    label.new:    Nouveau mot de passe
+    label.newcheck: Vérification du nouveau mot de passe
+    placeholder.new : Saisir votre nouveau mot de passe        
+    placeholder:
+        username:   Saisir votre nom d'utilisateur
+        email:      Saisir votre email
+        nom:        Saisir votre nom
+        prenom:     Saisir votre prénom
+        tel:        Saisir votre numéro de téléphone
+        current_password:   Saisir votre mot de passe actuel
+        clientChoice:   Sélectionner un client
+    label:
+        id:        Id
+        designation:    Désignation
+        adresse:    Adresse
+        username:   Nom d'utilisateur
+        email:      Email
+        nom:        Nom
+        prenom:     Prénom
+        tel:        Téléphone
+        client:     Client
+        current_password:   Mot de passe actuel
+        enabled:    Actif
+        roles:      Niveau
+        lastlogin:  Dernière connection
+        nom_client: Nom du client
+        domaine: Nom de domaine
+        infosbanque: Informations bancaires
+        prefix_facture: Prefixe facture
+        prefix_facture_help: Le prefixe qui sera affiché sur les factures
+        options: Options du client
+        duree_contrat: Durée contrat max
+        duree_contrat_help: Durée maximale possibles des contrats (en jours)
+        facturation: Facturation
+        franchise: Franchise
+        web: Web
+        typste: Type de société
+        codeape: Code APE
+        capital: Capital
+        logo: Logo
+        imageName: Logo
+        logo_help: Logo de l'entreprise au format jpg, jpeg , gif ou png
+        cgl: CGL
+        cglName: CGL
+        cgl_help: Conditions générales de location au format .txt
+        ville: Ville
+        cp: Code postal
+        land: Pays
+        banque: Banque
+        code_guichet: Code guichet
+        compte: N° de compte
+        clerib: Clé
+        mode_payment: Moyens de paiements
+        surclassementMax: Surclassements max
+        surclassementMax_help: Nombre maximum de surclassements possibles en cas de non disponnibilité de la gamme demandée
+        penality: Pénalité retard
+        penality_help: Pénalité par jour de retard (en pourcentage du tarif journalier)
+        ifr: Indémnité forfaitaire de retard
+        multitp: coef sur taux légal
+        duree_contrat_help: Durée maximale possible
+        surclass: niveau(x)
+        toleranceretard_addon: en heure(s)
+        validitebha_addon: en jour(s)
+        validiteBonAchat: Durée de validité des bons d'achat
+        toleranceRetard: Retard admissible au retour
+        optionspayante: Options payantes
+        noclient:   Pas de client affecté
+        photo:  Photo
+        
+    profil:
+        edit:   Editer votre profil
+    title:
+        edit_region : Edition de la région
+        list_region : Liste des régions
+        show_region : Voir le détail d'une région
+        new_region  : Nouvelle région
+        edit_utilisateur : Edition de l'utilisateur
+        list_utilisateur : Liste des utilisateurs
+        pass_utilisateur    : Changer le mot de passe de l'utilisateur 
+        show_utilisateur : Voir le détail d'un utilisateur
+        edit_client : Edition du client
+        list_client : Liste des clients
+        new_client  : Nouveau client
+        show_client : Voir le détail d'un client
+        edit_typste : Edition du type de société
+        list_typste : Liste des types de société
+        new_typste  : Nouveau type de société
+        show_typste : Voir le détail d'un type de société
+        edit_land : Edition du pays
+        list_land : Liste des pays
+        new_land  : Nouveau pays
+        show_land : Voir le détail d'un pays
+        identite    : Identité
+        coord       : Coordonnées
+        options     : Options
+        infosbanque : Informations bancaires

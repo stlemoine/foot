@@ -1,0 +1,7 @@
+ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+ 
+ * @UniqueEntity(fields="usernameCanonical", errorPath="username", message="fos_user.username.already_used")
+ * @ORM\AttributeOverrides({
+ *      @ORM\AttributeOverride(name="email", column=@ORM\Column(type="string", name="email", length=255, unique=false, nullable=true)),
+ *      @ORM\AttributeOverride(name="emailCanonical", column=@ORM\Column(type="string", name="email_canonical", length=255, unique=false, nullable=true))
+ * })

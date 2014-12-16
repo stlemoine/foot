@@ -1,0 +1,82 @@
+
+    /**
+{% block phpdoc_method_header %}
+     * Lists all {{ entity }} entities.
+{% endblock phpdoc_method_header %}
+     *
+{% block phpdoc_method_annotations %}
+{% if 'annotation' == format %}
+     * @Route("/", name="{{ route_name_prefix }}")
+     * @Template()
+{% endif %}
+{% endblock phpdoc_method_annotations %}
+     */
+{% block method_definition %}
+    public function indexAction()
+{% endblock method_definition %}
+    {
+{% block method_body %}
+        // traduction
+        $t = $this->get('translator');
+        
+        $em = $this->getDoctrine()->getManager();
+
+        // Liste des {{ entity }}s
+        $source = new Entity('{{ bundle }}:{{ entity }}');
+        
+        // Ne selectionner que les entités relatives à un client
+        if(!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN_SLAD')){
+            $club	= $this->container->get('security.context')->getToken()->getUser()->getClub()->getId();
+            $source->manipulateQuery(
+                    function ($query) use ($club)
+                    {
+                        $query	->andWhere('_a.club = '.$club)
+                                        ;
+                    }
+            );
+        }
+        
+     	// Get a grid instance
+        $grid = $this->get('grid');
+
+     	// Attach the source to the grid
+        $grid->setSource($source);
+        $grid->addExport(new SCSVExport('SC-CSV Export'));
+        $grid->addExport(new ExcelExport('Excel Export'));
+        // prefixe pour la traduction
+        $grid->setPrefixTitle('grid.');
+
+        // Réglage des filtres
+        if(!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN_SLAD')){
+            $grid->getColumn('club.nom')->setFilterable(false);
+        }
+
+
+        // Réglage taille des colonnes
+
+        $grid->setActionsColumnSize(120);
+        // Réglage pagination
+        $grid->setLimits(array(10, 15, 20, 50));
+		
+        // Add a typed column with a rendering callback
+        $edit = new rowAction($t->trans('Edit'),'{{route_name_prefix}}_edit', false, '_self'); 
+        $edit->setRouteParameters(array('id'));
+        $grid->addRowAction($edit);
+
+        $show = new rowAction($t->trans('Show'),'{{route_name_prefix}}_show', false, '_self');
+        $show->setRouteParameters(array('id'));
+        $grid->addRowAction($show);	
+
+        // Prépa avant envoi	
+        $grid->isReadyForRedirect();
+
+{% endblock method_body %}
+
+{% block method_return %}
+        return $grid->getGridResponse('::Appli\{{entity}}\index.html.twig',
+                                        array(  'grid'=>$grid,
+                                                'entity'=>$source
+                                                )
+                                      );	
+{% endblock method_return %}
+    }

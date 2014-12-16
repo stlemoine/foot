@@ -1,0 +1,69 @@
+    /**
+{% block phpdoc_method_header %}
+     * Edits an existing {{ entity }} entity.
+{% endblock phpdoc_method_header %}
+     *
+{% block phpdoc_method_annotations %}
+{% if 'annotation' == format %}
+     * @Route("/{id}", name="{{ route_name_prefix }}_update")
+     * @Method("PUT")
+     * @Template("::Appli\{{entity}}\edit.html.twig")
+{% endif %}
+{% endblock phpdoc_method_annotations %}
+     */
+{% block method_definition %}
+    public function updateAction(Request $request, $id)
+{% endblock method_definition %}
+    {
+{% block method_body %}
+        // traduction
+        $t = $this->get('translator');
+        
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('{{ bundle }}:{{ entity }}')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException($t->trans('form.erreur.objet_introuvable'));
+        }
+        
+        $this->container->get('app.checkaccess')->Client($entity);
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($entity);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $em->flush();
+            
+            // message mise à jour réussie
+            $this->get('session')->getFlashBag()->add(
+                        'success',
+                        $t->trans('form.success.modif_ok')
+            );
+
+            return $this->redirect($this->generateUrl('{{ route_name_prefix }}'));
+        }
+{% endblock method_body %}
+
+{% block method_return %}
+        // message mise à jour ratée
+        $this->get('session')->getFlashBag()->add(
+            'error',
+            $t->trans('form.erreur.saisie')
+        );
+{% if 'annotation' == format %}
+        return array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        );
+{% else %}
+        return $this->render('Appli\{{entity}}\edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+{% endif %}
+{% endblock method_return %}
+    }

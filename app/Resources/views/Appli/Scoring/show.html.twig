@@ -1,0 +1,33 @@
+{% extends '::Appli/layout.html.twig' %}
+
+{% block title %} {{ parent() }}|scoring|{{'grid.show'|trans}} {% endblock %}
+
+{% block appli_content %}
+
+    <h1>
+        {{'menu.scoring'|trans}} 
+        <a href="{{ path('scoring') }}" id="retour" name="retour" class="btn btn-danger btn-xs">{{ 'retour.liste' | trans }}</a>
+    </h1>
+
+    <table class="table table-bordered table-condensed">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>G</th>
+                <td>{{ entity.g }}</td>
+            </tr>
+            <tr>
+                <th>N</th>
+                <td>{{ entity.n }}</td>
+            </tr>
+            <tr>
+                <th>P</th>
+                <td>{{ entity.p }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock appli_content %}

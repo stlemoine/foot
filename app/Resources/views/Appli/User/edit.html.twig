@@ -1,0 +1,116 @@
+{% extends '::Appli/layout.html.twig' %}
+
+{% block title %} {{ parent() }}|user|{{'grid.edit'|trans}}{% endblock %}
+
+    
+{% block appli_content %}
+<div class="row">	
+    <div class="col-sm-6">
+        <form action="{{ path('user_update', { 'id': entity.id }) }}" method="POST" {{ form_enctype(edit_form) }} class="form-horizontal" role="form">
+
+        <h4>{{ 'form.title.user_edit'|trans }} {{entity.prenom}} {{entity.nom}}</h4>
+        <div class="form-group">
+            {{ form_label(edit_form.username,'form.label.username'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+            <div class="col-sm-4">
+                {{ form_widget(edit_form.username,{'attr':{'class':'form-control'} })}}
+            </div>
+            <div class="col-sm-4">
+                {{ form_errors(edit_form.username)}}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(edit_form.email,'form.label.email'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+            <div class="col-sm-4">
+                {{ form_widget(edit_form.email,{'attr':{'class':'form-control'} })}}
+            </div>
+            <div class="col-sm-4">
+                {{ form_errors(edit_form.email)}}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(edit_form.prenom,'form.label.prenom'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+            <div class="col-sm-4">
+                {{ form_widget(edit_form.prenom,{'attr':{'class':'form-control'} })}}
+            </div>
+            <div class="col-sm-4">
+                {{ form_errors(edit_form.prenom)}}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(edit_form.nom,'form.label.nom'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+            <div class="col-sm-4">
+                {{ form_widget(edit_form.nom,{'attr':{'class':'form-control'} })}}
+            </div>
+            <div class="col-sm-4">
+                {{ form_errors(edit_form.nom)}}
+            </div>
+        </div>
+        <div class="row control-group">
+            <div class="col-sm-3">
+                <label class="control-label" for="textinput">{{ "form.imageName" | trans }}</label>
+            </div>
+            <div class="col-sm-9">
+                <div class="controls">
+                    {{ form_widget(edit_form.photo) }}{{ form_errors(edit_form.photo) }}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(edit_form.tel,'form.label.tel'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+            <div class="col-sm-4">
+                {{ form_widget(edit_form.tel,{'attr':{'class':'form-control'} })}}
+            </div>
+            <div class="col-sm-4">
+                {{ form_errors(edit_form.tel)}}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(edit_form.enabled,'form.label.enabled'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+            <div class="col-sm-4">
+                {{ form_widget(edit_form.enabled,{'attr':{'class':'form-control'} })}}
+            </div>
+            <div class="col-sm-4">
+                {{ form_errors(edit_form.enabled)}}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(edit_form.roles,'form.label.roles'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+            <div class="col-sm-4">
+                {{ form_widget(edit_form.roles,{'attr':{'class':'form-control'} })}}
+            </div>
+            <div class="col-sm-4">
+                {{ form_errors(edit_form.roles)}}
+            </div>
+        </div>
+        {% if is_granted('ROLE_SUPER_ADMIN_SLAD') %}
+            <div class="form-group">
+                {{ form_label(edit_form.club,'form.label.club'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+                <div class="col-sm-4">
+                    {{ form_widget(edit_form.club,{'attr':{'class':'form-control'} })}}
+                </div>
+                <div class="col-sm-4">
+                    {{ form_errors(edit_form.club)}}
+                </div>
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-4">
+                <button class="btn btn-primary btn-xs" type="submit">{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}</button>
+                <a href="{{ path('user') }}" id="retour" name="retour" class="btn btn-danger btn-xs">{{ "retour.liste" | trans }}</a> 
+            </div>
+        </div>
+        <input type="hidden" name="id" value="{{entity.id}}" />
+        <input type="hidden" name="_method" value="PUT" />
+        {{ form_rest(edit_form) }}
+        </form> 
+    </div>
+    <div class="col-sm-6">
+        <img src="{{ asset(vich_uploader_asset(entity, 'user_pict'))| imagine_filter('large') }}" alt="photo" />
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

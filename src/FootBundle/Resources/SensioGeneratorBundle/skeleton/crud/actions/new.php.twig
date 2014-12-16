@@ -1,0 +1,41 @@
+
+    /**
+{% block phpdoc_method_header %}
+     * Displays a form to create a new {{ entity }} entity.
+{% endblock phpdoc_method_header %}
+     *
+{% block phpdoc_method_annotations %}
+{% if 'annotation' == format %}
+     * @Route("/new", name="{{ route_name_prefix }}_new")
+     * @Method("GET")
+     * @Template("::Appli\{{ entity }}\new.html.twig")
+{% endif %}
+{% endblock phpdoc_method_annotations %}
+     */
+{% block method_definition %}
+    public function newAction()
+{% endblock method_definition %}
+    {
+{% block method_body %}
+        $entity = new {{ entity_class }}();
+        if(!$this->get('security.context')->isGranted('ROLE_SUPER_ADMIN_SLAD')){
+            $client	= $this->container->get('security.context')->getToken()->getUser()->getClub();
+            $entity->setClub($club);
+        }
+        $form   = $this->createCreateForm($entity);
+{% endblock method_body %}
+
+{% block method_return %}
+{% if 'annotation' == format %}
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+{% else %}
+        return $this->render('::Appli\{{ entity}}\new.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        ));
+{% endif %}
+{% endblock method_return %}
+    }

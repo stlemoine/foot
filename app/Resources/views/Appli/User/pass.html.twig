@@ -1,0 +1,51 @@
+{% extends '::Appli/layout.html.twig' %}
+
+{% block title %} {{ parent() }}|user|password{% endblock %}
+
+    
+{% block appli_content %}
+
+<form action="{{ path('user_updpass', { 'id': entity.id }) }}" method="POST" {{ form_enctype(pass_form) }} class="form-horizontal" role="form">
+
+<div>
+    <h4>{{ 'form.title.pass_utilisateur'|trans }} {{entity.prenom}} {{entity.nom}}</h4>
+    <div class="form-group">
+        {{ form_label(pass_form.new.first,'form.label.new'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+        <div class="col-sm-4">
+            {{ form_widget(pass_form.new.first,{'attr':{'class':'form-control','placeholder':'form.placeholder.new'|trans} })}}
+        </div>
+        <div class="col-sm-4">
+            {{ form_errors(pass_form.new.first)}}
+        </div>
+    </div> 
+    <div class="form-group">
+        {{ form_label(pass_form.new.second,'form.label.newcheck'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
+        <div class="col-sm-4">
+            {{ form_widget(pass_form.new.second,{'attr':{'class':'form-control','placeholder':'form.placeholder.new'|trans} })}}
+        </div>
+        <div class="col-sm-4">
+            {{ form_errors(pass_form.new.second)}}
+        </div>
+    </div> 
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-4">
+            <button class="btn btn-primary btn-xs" type="submit">{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}</button>
+            <a href="{{ path('user') }}" id="retour" name="retour" class="btn btn-danger btn-xs">{{ "retour.liste" | trans }}</a> 
+        </div>
+    </div>
+    <input type="hidden" name="id" value="{{entity.id}}" />
+    <input type="hidden" name="_method" value="PUT" />
+</div>
+    
+<div class="row">	
+
+
+        {{ form_rest(pass_form) }}
+
+
+</div>
+
+</form>
+
+
+{% endblock %}

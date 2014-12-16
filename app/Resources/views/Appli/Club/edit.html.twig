@@ -1,0 +1,28 @@
+{% extends '::Appli/layout.html.twig' %}
+{% form_theme edit_form with '::Form/simple.html.twig' %}
+
+{% block title %} {{ parent() }}|club|{{'grid.edit'|trans}} {% endblock %}
+
+{% block appli_content %}
+<div class="row">
+    <div class="col-sm-6">
+        {{ form_start(edit_form) }}
+
+            <h1>
+                {{'menu.club'|trans}} {{'edition'|trans}}
+                {{form_widget(edit_form.submit)}}
+                <a href="{{ path('club') }}" id="retour" name="retour" class="btn btn-danger btn-xs">{{ 'retour.liste' | trans }}</a>
+            </h1>
+
+            {{ form(edit_form) }}
+
+        {{ form_end(edit_form) }}        
+    </div>
+    <div class="col-sm-6">
+        <img src="{{ asset(vich_uploader_asset(entity, 'club_logo'))| imagine_filter('large') }}" alt="photo" />
+    </div>
+</div>
+
+
+
+{% endblock appli_content %}

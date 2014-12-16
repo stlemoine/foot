@@ -1,0 +1,10 @@
+# scr/AppBundle/Ressources/translations/validators.fr.yml
+
+land:
+    name:
+        notblank:   Veuillez saisir un nom de pays
+        minMessage: Votre nom doit faire au moins {{ limit }} caractères
+        maxMessage: Votre nom ne peut pas être plus long que {{ limit }} caractères
+            
+        
+    
