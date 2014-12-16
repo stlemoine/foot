@@ -40,14 +40,14 @@ class RegistrationFormType extends BaseType
                 'required'  => false,
                 'label'     => 'form.label.tel'
                   ));
-        if($this->security->isGranted('ROLE_SUPER_ADMIN_SLAD')){
-            $builder->add('club',	'entity',
-                                array( 'class'          => 'FootBundle:Club',
-                                       'required'       => false,
-                                       'label'          => 'form.club',
-									   'empty_value'	=>'form.placeholder.clubChoice',
-               ));
-        }
+
+        $builder->add('club',	'entity',
+                            array( 'class'          => 'FootBundle:Club',
+                                   'required'       => false,
+                                   'label'          => 'form.club',
+                                'empty_value'	=>'form.placeholder.clubChoice',
+           ));
+
         if($this->security->isGranted('ROLE_ADMIN')){
             $builder->add('roles', 'choice', 
                     array(

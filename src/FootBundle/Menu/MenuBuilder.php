@@ -122,7 +122,7 @@ class MenuBuilder extends ContainerAware
             $username = 'Visiteur';
             $menu['User']->addChild('Login', array('route' => 'fos_user_security_login','label' => 'form.login'))
             ->setAttribute('icon', 'fa fa-sign-in');
-            $menu['User']->addChild('Register', array('route' => 'fos_user_registration_register','label' => 'form.register'))
+            $menu['User']->addChild('Register', array('route' => 'user_new','label' => 'form.register'))
             ->setAttribute('icon', 'fa fa-sign-in');
         }// Check if the visitor has any authenticated roles
 

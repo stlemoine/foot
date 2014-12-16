@@ -20,7 +20,17 @@ retour:
 # Registration
 registration:
     check_email: Un e-mail a été envoyé à l'adresse %email%. Il contient un lien d'activation sur lequel il vous faudra cliquer afin d'activer votre compte.
-    confirmed: Félicitations %username%, votre compte est maintenant activé. Mais vous devez encore demander votre rattachement à votre club préféré afin de suivre son actualité. Vous pouvez faire cela en choisissant un club ci-dessous. Une demande sera envoyée au webmaster qui répondra le plus rapidement possible.
+    confirmed: |
+        Félicitations %username% et bienvenue parmi les membres du club. 
+        
+        Votre compte est maintenant activé. 
+        
+        Vous pouvez demander au responsable du club de vous attribuer un role particulier pour jouer, coacher, ou commenter les exploits de vos équipes préférées au sein de votre club.
+        
+        Cordialement.
+        
+        L'équipe.
+        
     back: Retour à la page d'origine.
     submit: Enregistrer
     flash:
@@ -114,6 +124,9 @@ grid:
     
     
 form:
+    register: Inscription
+    confirmed: Confirmation de votre inscription au site du club
+    checkemail: Vérification de l'inscription par email
     erreur:
         saisie              : Une erreur est survenue, veuillez vérifier que le formulaire est correctement complété!
         access_denied       : Vous n'êtes pas autorisé à effectuer cette action!
@@ -130,6 +143,7 @@ form:
     plainPassword.first:  Mot de passe
     plainPassword.second:  Vérification du mot de passe
     label.new:    Nouveau mot de passe
+    label.club : Club de rattachement
     label.newcheck: Vérification du nouveau mot de passe
     placeholder.new : Saisir votre nouveau mot de passe        
     placeholder:
@@ -139,7 +153,7 @@ form:
         prenom:     Saisir votre prénom
         tel:        Saisir votre numéro de téléphone
         current_password:   Saisir votre mot de passe actuel
-        clientChoice:   Sélectionner un client
+        clubChoice:   Sélectionner un club
     label:
         id:        Id
         designation:    Désignation

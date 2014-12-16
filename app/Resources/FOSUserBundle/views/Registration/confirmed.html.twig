@@ -1,8 +1,15 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
-    <div class="row">
-        <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                 {{ 'form.confirmed'|trans }}
+            </div>
+            <div class="panel-body">
+                <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+            </div>
+        </div>
     </div>
     {% if app.session is not empty %}
         {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
