@@ -2,80 +2,73 @@
     
     <div class="row">
         <div class="col-sm-6">
-            <div class="form-group">
-                {{ form_label(form.username,'form.label.username'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
-                <div class="col-sm-4">
-                    {{ form_widget(form.username,{'attr':{'class':'form-control'} })}}
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                     {{ 'form.profil.edition'|trans }}
                 </div>
-                <div class="col-sm-4">
-                    {{ form_errors(form.username)}}
-                </div>
-            </div>
-            <div class="form-group">
-                {{ form_label(form.email,'form.label.email'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
-                <div class="col-sm-4">
-                    {{ form_widget(form.email,{'attr':{'class':'form-control'} })}}
-                </div>
-                <div class="col-sm-4">
-                    {{ form_errors(form.email)}}
-                </div>
-            </div> 
-            <div class="form-group">
-                {{ form_label(form.prenom,'form.label.prenom'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
-                <div class="col-sm-4">
-                    {{ form_widget(form.prenom,{'attr':{'class':'form-control'} })}}
-                </div>
-                <div class="col-sm-4">
-                    {{ form_errors(form.prenom)}}
-                </div>
-            </div> 
-            <div class="form-group">
-                {{ form_label(form.nom,'form.label.nom'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
-                <div class="col-sm-4">
-                    {{ form_widget(form.nom,{'attr':{'class':'form-control'} })}}
-                </div>
-                <div class="col-sm-4">
-                    {{ form_errors(form.nom)}}
-                </div>
-            </div> 
-            <div class="form-group">
-                {{ form_label(form.tel,'form.label.tel'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
-                <div class="col-sm-4">
-                    {{ form_widget(form.tel,{'attr':{'class':'form-control'} })}}
-                </div>
-                <div class="col-sm-4">
-                    {{ form_errors(form.tel)}}
-                </div>
-            </div> 
-            <div class="form-group">
-                <div class="col-sm-4">
-                    {{ form_label(form.photo,'form.label.photo'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
-                </div>
-                <div class="col-sm-4">
-                    {{ form_widget(form.photo)}}
-                </div>
-                <div class="col-sm-4">
-                    {{ form_errors(form.photo)}}
-                </div>
-            </div>
-            <div class="form-group">
-                {{ form_label(form.current_password,'form.label.current_password'|trans,{'label_attr':{'class':'col-sm-2 control-label'} })}}
-                <div class="col-sm-4">
-                    {{ form_widget(form.current_password,{'attr':{'class':'form-control','placeholder':'form.placeholder.current_password'|trans} })}}
-                </div>
-                <div class="col-sm-4">
-                    {{ form_errors(form.current_password)}}
-                </div>
-            </div> 
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-4">
-                  <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(form.username,'form.label.username'|trans,{'label_attr':{'class':'col-sm-4 control-label'} })}}
+                        <div class="col-sm-8">
+                            {{ form_widget(form.username,{'attr':{'class':'form-control'} })}}{{ form_errors(form.username)}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.email,'form.label.email'|trans,{'label_attr':{'class':'col-sm-4 control-label'} })}}
+                        <div class="col-sm-8">
+                            {{ form_widget(form.email,{'attr':{'class':'form-control'} })}}{{ form_errors(form.email)}}
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        {{ form_label(form.prenom,'form.label.prenom'|trans,{'label_attr':{'class':'col-sm-4 control-label'} })}}
+                        <div class="col-sm-8">
+                            {{ form_widget(form.prenom,{'attr':{'class':'form-control'} })}}{{ form_errors(form.prenom)}}
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        {{ form_label(form.nom,'form.label.nom'|trans,{'label_attr':{'class':'col-sm-4 control-label'} })}}
+                        <div class="col-sm-8">
+                            {{ form_widget(form.nom,{'attr':{'class':'form-control'} })}}{{ form_errors(form.nom)}}
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        {{ form_label(form.tel,'form.label.tel'|trans,{'label_attr':{'class':'col-sm-4 control-label'} })}}
+                        <div class="col-sm-8">
+                            {{ form_widget(form.tel,{'attr':{'class':'form-control'} })}}{{ form_errors(form.tel)}}
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        {{ form_label(form.photo,'form.label.photo'|trans,{'label_attr':{'class':'col-sm-4 control-label'} })}}{{ form_errors(form.photo)}}
+                        <div class="col-sm-8">
+                            {{ form_widget(form.photo)}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.current_password,'form.label.current_password'|trans,{'label_attr':{'class':'col-sm-4 control-label'} })}}
+                        <div class="col-sm-8">
+                            {{ form_widget(form.current_password,{'attr':{'class':'form-control','placeholder':'form.placeholder.current_password'|trans} })}}{{ form_errors(form.current_password)}}
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                          <input type="submit" class="btn btn-primary btn-block" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-     
+
         <div class="col-sm-6">
-            <img src="{{ asset(vich_uploader_asset(app.user, 'user_pict'))| imagine_filter('large') }}" alt="photo" />
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                     {{ 'form.profil.photo'|trans }}
+                </div>
+                <div class="panel-body">
+                    <p class="text-center"> 
+                        <img src="{{ asset(vich_uploader_asset(app.user, 'user_pict'))| imagine_filter('large') }}" class="img-rounded" alt="photo" />
+                    </p>
+                </div>
+            </div>
         </div>
         
     </div> 

@@ -69,7 +69,6 @@ grid:
     entree:     Entrée  
     sortie:     Sortie
     minute:     Minute
-    user:       Membre
     match:      Match
     liste:      liste
     debut:      Début
@@ -116,8 +115,7 @@ grid:
     equipe: Equipe de notre club
     equipe:
         nom: Nom de l'équipe
-    user:
-        list: Liste des membres
+    user:  Membre
     saison:
         debut: Début saison
         fin: Fin saison
@@ -214,6 +212,8 @@ form:
         
     profil:
         edit:   Editer votre profil
+        edition: Edition de votre profil
+        photo: Votre photo actuelle
     title:
         edit_region : Edition de la région
         list_region : Liste des régions

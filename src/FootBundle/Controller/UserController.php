@@ -82,6 +82,8 @@ class UserController extends Controller
         $grid->setActionsColumnSize(120);
         // Réglage pagination
         $grid->setLimits(array(10, 15, 20, 50));
+        
+        $grid->setPersistence(true);
 		
         // Add a typed column with a rendering callback
         $edit = new rowAction('Edit','user_edit', false, '_self',array(),'ROLE_ADMIN'); 
